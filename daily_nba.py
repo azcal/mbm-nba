@@ -321,6 +321,11 @@ def run(today_str):
 
     fin = g.set_index("game_id")["home_win"]
     log["result"] = log.game_id.map(fin)
+    # The spread head is graded against the actual margin. `result` here is a win/loss
+    # flag, which cannot answer "did the home side win by four or more".
+    mrg = df.dropna(subset=["margin"]).drop_duplicates("game_id").set_index(
+        df.dropna(subset=["margin"]).drop_duplicates("game_id").game_id.astype(str))["margin"]
+    log["final_margin"] = log.game_id.astype(str).map(mrg)
     log.to_csv(pred_path, index=False)
     dec = log[log.result.notna()]
     if len(dec) >= 30:
