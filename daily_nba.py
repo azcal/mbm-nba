@@ -19,6 +19,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import tg_delta
 import board_format as BF
+import espn_roster as R
 import notify
 import spread
 import engine_nba as E
@@ -31,7 +32,7 @@ import engine_nba as E
 # file freshness, and folding it in would both raise on the comparison and trigger a
 # pointless rebackfill of 2,629 rows.
 SHARED_MIN = "2026-08-03"
-for _mod in (BF, notify, tg_delta):
+for _mod in (BF, notify, tg_delta, R):
     _have = getattr(_mod, "VERSION", "")
     if _have < SHARED_MIN:
         raise ImportError(
@@ -52,6 +53,7 @@ E.norm_abbr = lambda x: x
 H = {"User-Agent": "Mozilla/5.0"}
 HOOPR = "https://raw.githubusercontent.com/sportsdataverse/hoopR-nba-data/main/nba"
 ESPN = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba"
+LEAGUE = "NBA"          # label on the injury log rows
 DATA = os.path.join(HERE, "data")
 LOGS = os.path.join(HERE, "logs")
 SPEC = json.load(open(os.path.join(HERE, "spec.json")))
@@ -183,40 +185,49 @@ def fetch_slate_espn(dates):
                             home=hb, away=ab, neutral=bool(c.get("neutralSite"))))
     return out
 
-def fetch_out_ids():
-    out = {}
-    try:
-        r = requests.get(f"{ESPN}/injuries", headers=H, timeout=30).json()
-        teams = requests.get(f"{ESPN}/teams", headers=H, timeout=30).json()
-        id2ab = {t["team"]["id"]: t["team"]["abbreviation"]
-                 for t in teams["sports"][0]["leagues"][0]["teams"]}
-        for tm in r.get("injuries", []):
-            ab = id2ab.get(str(tm.get("id")))
-            outs = set()
-            for inj in tm.get("injuries", []):
-                if str(inj.get("status", "")).lower() == "out":
-                    aid = str(inj.get("athlete", {}).get("id", ""))
-                    if aid:
-                        outs.add(aid)
-            if ab:
-                out[ab] = outs
-    except Exception as ex:
-        print("injury feed unavailable, using last-rotation fallback:", ex)
-    ov = os.path.join(HERE, "overrides.json")
-    if os.path.exists(ov):
-        for ab, ids in json.load(open(ov)).get("out", {}).items():
-            out.setdefault(ab, set()).update(str(x) for x in ids)
-    return out
+def rosters_and_outs(day):
+    """Tonight's rosters and who is unavailable, in one sweep of the roster endpoint.
 
-def expected_actives(pbox, g, team, out_ids):
-    games = g[((g.home_abbreviation == team) | (g.away_abbreviation == team)) & g.home_score.notna()]
+    Membership used to be inferred from who appeared in the team's last three box scores.
+    That is wrong for as long as it takes a traded player to appear in one, and wrong in
+    both directions at once: missing from her new team, still counted for her old one.
+    Each athlete on the roster response carries their own injuries array, so this also
+    replaces the separate /injuries call.
+    """
+    ros = R.fetch(ESPN)
+    outs = R.out_ids(ros, os.path.join(HERE, "overrides.json"))
+    if ros["by_ab"]:
+        R.log_statuses(ros, LOGS, day, LEAGUE)
+    return ros, outs
+
+
+def expected_actives(minutes, team, ros, outs):
+    """Players on tonight's roster who have logged minutes recently and are not out.
+
+    `minutes` is keyed by athlete across the whole league, so a player traded in this
+    week is scored on the minutes she has actually been playing rather than on the zero
+    she has with her new team.
+    """
+    ids = ros["by_ab"].get(team, set())
+    return [(aid, minutes[aid], 0.0, 0.0) for aid in ids
+            if aid in minutes and aid not in outs]
+
+
+def expected_actives_from_box(pbox_hist, g_hist, team, out_ids):
+    """Fallback when the roster feed is unreachable: the old last-3-games rotation.
+
+    Kept so a feed outage degrades to the previous behaviour instead of posting an
+    empty board.
+    """
+    games = g_hist[(g_hist.home_abbreviation == team) | (g_hist.away_abbreviation == team)]
     recent = games.sort_values("game_date").game_id.tail(3).tolist()
     seen = {}
     for gid in recent:
-        for aid, m, gs, pm in pbox.get(gid, {}).get(team, []):
+        for aid, m, gs, pm in pbox_hist.get(gid, {}).get(team, []):
             if m and m > 0:
                 seen[str(aid)] = max(seen.get(str(aid), 0.0), float(m))
     return [(aid, m, 0.0, 0.0) for aid, m in seen.items() if aid not in out_ids]
+
 
 def run(today_str):
     today = pd.Timestamp(today_str)
@@ -235,12 +246,17 @@ def run(today_str):
     for s in fetch_slate_espn(horizon):
         if s["game_id"] not in have:
             slate.append(s)
-    out_ids = fetch_out_ids()
+    ros, outs = rosters_and_outs(datestr)
+    # Minutes are looked up by athlete across the league, not within a team, so a player
+    # traded in this week is scored on what she has actually been playing.
+    mins = R.recent_minutes(pbox, g, pd.Timestamp(datestr))
 
     pseudo = []
     for s in slate:
-        pbox[s["game_id"]] = {tm: expected_actives(pbox, g, tm, out_ids.get(tm, set()))
-                              for tm in (s["home"], s["away"])}
+        pbox[s["game_id"]] = {
+            tm: (expected_actives(mins, tm, ros, outs) if ros["by_ab"].get(tm)
+                 else expected_actives_from_box(pbox, g, tm, outs))
+            for tm in (s["home"], s["away"])}
         pseudo.append({"game_id": s["game_id"], "game_date": s["date"], "game_date_time": s["date"],
                        "season": cur, "season_type": 2, "home_abbreviation": s["home"],
                        "away_abbreviation": s["away"], "home_score": np.nan, "away_score": np.nan,
