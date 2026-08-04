@@ -246,10 +246,10 @@ def run(today_str):
     for s in fetch_slate_espn(horizon):
         if s["game_id"] not in have:
             slate.append(s)
-    ros, outs = rosters_and_outs(datestr)
+    ros, outs = rosters_and_outs(today_str)
     # Minutes are looked up by athlete across the league, not within a team, so a player
     # traded in this week is scored on what she has actually been playing.
-    mins = R.recent_minutes(pbox, g, pd.Timestamp(datestr))
+    mins = R.recent_minutes(pbox, g, today)
 
     pseudo = []
     for s in slate:
