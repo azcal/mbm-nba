@@ -188,7 +188,9 @@ def fetch_slate_espn(dates):
             hb, ab = t["home"]["team"]["abbreviation"], t["away"]["team"]["abbreviation"]
             if hb not in CITY or ab not in CITY:
                 continue
-            if bool(e["status"]["type"].get("completed")):
+            # state rather than completed: a game in progress is completed=False and must
+            # not be boarded either.
+            if e.get("status", {}).get("type", {}).get("state") != "pre":
                 continue
             out.append(dict(game_id=str(e["id"]), date=pd.Timestamp(d.date()),
                             home=hb, away=ab, neutral=bool(c.get("neutralSite"))))
