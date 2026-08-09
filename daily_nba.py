@@ -20,6 +20,7 @@ sys.path.insert(0, HERE)
 import tg_delta
 import board_format as BF
 import espn_roster as R
+import freshness as FR
 import notify
 import spread
 import engine_nba as E
@@ -32,7 +33,7 @@ import engine_nba as E
 # file freshness, and folding it in would both raise on the comparison and trigger a
 # pointless rebackfill of 2,629 rows.
 SHARED_MIN = "2026-08-03"
-for _mod in (BF, notify, tg_delta, R):
+for _mod in (BF, notify, tg_delta, R, FR):
     _have = getattr(_mod, "VERSION", "")
     if _have < SHARED_MIN:
         raise ImportError(
@@ -50,7 +51,12 @@ CITY = {"ATL":(33.75,-84.39),"BOS":(42.37,-71.06),"BKN":(40.68,-73.97),"CHA":(35
 E.CITY = CITY
 E.norm_abbr = lambda x: x
 
-H = {"User-Agent": "Mozilla/5.0"}
+H = {"User-Agent": "Mozilla/5.0"}          # hoopR mirrors, fine with a UA
+# ESPN 403s ANY custom User-Agent and only serves the requests default. Measured
+# 2026-08-05 on the WNBA scoreboard: no header 200, "Mozilla/5.0" 403, an honest
+# identifier with contact details 403, a full browser header set 403. mbm-wnba has
+# always worked because it never set one. Do not "fix" this by adding a UA.
+ESPN_H = {}
 HOOPR = "https://raw.githubusercontent.com/sportsdataverse/hoopR-nba-data/main/nba"
 ESPN = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba"
 LEAGUE = "NBA"          # label on the injury log rows
@@ -171,7 +177,7 @@ def fetch_slate_espn(dates):
     for d in dates:
         try:
             r = requests.get(f"{ESPN}/scoreboard", params={"dates": d.strftime("%Y%m%d")},
-                             headers=H, timeout=30).json()
+                             headers=ESPN_H, timeout=30).json()
         except Exception:
             continue
         for e in r.get("events", []):
@@ -249,6 +255,16 @@ def run(today_str):
     for s in fetch_slate_espn(horizon):
         if s["game_id"] not in have:
             slate.append(s)
+
+    # Refuse to price tonight on a history the source knows is incomplete. This is not an
+    # "is it today's data" test: a league that did not play yesterday is current with old
+    # data. It asks whether any completed game exists that this history has not seen.
+    _newest = pd.to_datetime(g[g.home_win.notna()].game_date).max().date()
+    _miss, _ = FR.missed_games("basketball/nba", _newest)
+    FR.guard("NBA", _newest, "basketball/nba")
+    FRESH_LINE = FR.board_line(_newest, checked=(_newest, _miss))
+    SEASON_LINE = None
+
     ros, outs = rosters_and_outs(today_str)
     # Minutes are looked up by athlete across the league, not within a team, so a player
     # traded in this week is scored on what she has actually been playing.
@@ -493,6 +509,9 @@ def run(today_str):
             body = body + ["", "TRIPWIRE: " + ", ".join(alerts)
                            + " below base rate, stop betting this board"]
             colour = notify.RED
+        # The board carries its own provenance. A reader should not have to trust that
+        # the data was current; the row says so.
+        foot = " · ".join([x for x in (FRESH_LINE, SEASON_LINE, foot) if x])
         notify.send(title, body, foot, colour)
     elif not push:
         print("no board to send")
