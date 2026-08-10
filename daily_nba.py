@@ -21,6 +21,7 @@ import tg_delta
 import board_format as BF
 import espn_roster as R
 import freshness as FR
+import mbm_checks as CHK
 import notify
 import spread
 import engine_nba as E
@@ -33,7 +34,7 @@ import engine_nba as E
 # file freshness, and folding it in would both raise on the comparison and trigger a
 # pointless rebackfill of 2,629 rows.
 SHARED_MIN = "2026-08-03"
-for _mod in (BF, notify, tg_delta, R, FR):
+for _mod in (BF, notify, tg_delta, R, FR, CHK):
     _have = getattr(_mod, "VERSION", "")
     if _have < SHARED_MIN:
         raise ImportError(
@@ -241,6 +242,7 @@ def expected_actives_from_box(pbox_hist, g_hist, team, out_ids):
 
 
 def run(today_str):
+    chk = CHK.Reporter("NBA", today_str)
     today = pd.Timestamp(today_str)
     cur = season_end_year(today)
     download_data(cur)
@@ -262,8 +264,8 @@ def run(today_str):
     # "is it today's data" test: a league that did not play yesterday is current with old
     # data. It asks whether any completed game exists that this history has not seen.
     _newest = pd.to_datetime(g[g.home_win.notna()].game_date).max().date()
-    _miss, _ = FR.missed_games("basketball/nba", _newest)
-    FR.guard("NBA", _newest, "basketball/nba")
+    _miss, _, _probe_failed = FR.missed_games("basketball/nba", _newest)
+    FR.guard("NBA", _newest, "basketball/nba", grace_days=1, reporter=chk)
     FRESH_LINE = FR.board_line(_newest, checked=(_newest, _miss))
     SEASON_LINE = None
 
@@ -411,6 +413,7 @@ def run(today_str):
     _m = df.dropna(subset=["margin"]).drop_duplicates("game_id")
     log["final_margin"] = log.game_id.astype(str).map(
         pd.Series(_m.margin.values, index=_m.game_id.astype(str)))
+    chk.finish(strict=True, require=["freshness"])
     log.to_csv(pred_path, index=False)
     dec = log[log.result.notna()]
     if len(dec) >= 30:
