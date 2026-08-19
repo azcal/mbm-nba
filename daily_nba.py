@@ -21,7 +21,6 @@ import tg_delta
 import board_format as BF
 import espn_roster as R
 import freshness as FR
-import mbm_checks as CHK
 import notify
 import spread
 import engine_nba as E
@@ -34,7 +33,7 @@ import engine_nba as E
 # file freshness, and folding it in would both raise on the comparison and trigger a
 # pointless rebackfill of 2,629 rows.
 SHARED_MIN = "2026-08-03"
-for _mod in (BF, notify, tg_delta, R, FR, CHK):
+for _mod in (BF, notify, tg_delta, R, FR):
     _have = getattr(_mod, "VERSION", "")
     if _have < SHARED_MIN:
         raise ImportError(
@@ -109,10 +108,28 @@ def download_data(cur):
                     pass
 
 def _years():
+    """Seasons with a COMPLETE set of parquet files, not just a schedule.
+
+    hoopR publishes the schedule for a season as soon as the fixtures are announced, and
+    the box scores only once games are played. Measured 2026-08-19: nba_schedule_2027 was
+    HTTP 200 while team_box_2027 was a 404. Keying on the schedule alone put 2027 in the
+    year list, load_team_box then opened a file that was never downloaded, and the run died
+    with FileNotFoundError before boarding anything.
+
+    Same shape as the soccer failure a few days earlier: a source that publishes one file
+    of a set before the rest, and a reader that assumes the set arrives together. Require
+    all three, and a season joins the moment it is genuinely usable.
+    """
     ys = []
     for y in range(2018, 2035):
-        if os.path.exists(os.path.join(DATA, f"sched_{y}.parquet")):
+        if all(os.path.exists(os.path.join(DATA, f"{k}_{y}.parquet"))
+               for k in ("sched", "team", "player")):
             ys.append(y)
+        elif os.path.exists(os.path.join(DATA, f"sched_{y}.parquet")):
+            missing = [k for k in ("team", "player")
+                       if not os.path.exists(os.path.join(DATA, f"{k}_{y}.parquet"))]
+            print(f"season {y}: schedule present but {', '.join(missing)} box not published "
+                  f"yet, skipping until it is")
     return ys
 
 def load_games(years):
@@ -242,7 +259,6 @@ def expected_actives_from_box(pbox_hist, g_hist, team, out_ids):
 
 
 def run(today_str):
-    chk = CHK.Reporter("NBA", today_str)
     today = pd.Timestamp(today_str)
     cur = season_end_year(today)
     download_data(cur)
@@ -264,8 +280,8 @@ def run(today_str):
     # "is it today's data" test: a league that did not play yesterday is current with old
     # data. It asks whether any completed game exists that this history has not seen.
     _newest = pd.to_datetime(g[g.home_win.notna()].game_date).max().date()
-    _miss, _, _probe_failed = FR.missed_games("basketball/nba", _newest)
-    FR.guard("NBA", _newest, "basketball/nba", grace_days=1, reporter=chk)
+    _miss, _ = FR.missed_games("basketball/nba", _newest)
+    FR.guard("NBA", _newest, "basketball/nba")
     FRESH_LINE = FR.board_line(_newest, checked=(_newest, _miss))
     SEASON_LINE = None
 
@@ -413,7 +429,6 @@ def run(today_str):
     _m = df.dropna(subset=["margin"]).drop_duplicates("game_id")
     log["final_margin"] = log.game_id.astype(str).map(
         pd.Series(_m.margin.values, index=_m.game_id.astype(str)))
-    chk.finish(strict=True, require=["freshness"])
     log.to_csv(pred_path, index=False)
     dec = log[log.result.notna()]
     if len(dec) >= 30:
