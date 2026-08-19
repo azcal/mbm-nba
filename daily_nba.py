@@ -1,5 +1,6 @@
 """
 MBM NBA daily runner (rebuild v1.1, frozen spec).
+
 - Downloads hoopR parquet history fresh each run; current-season file refreshes nightly
 - Slate from hoopR schedule with ESPN scoreboard fallback (reg/postseason only)
 - Availability: ESPN NBA injury feed (players listed Out removed from projected actives)
@@ -7,9 +8,11 @@ MBM NBA daily runner (rebuild v1.1, frozen spec).
 - CALIBRATION GATE: value lines suppressed until EVERY team has 8+ GP, on the
   console AND the pushed board
 - Grades logged predictions, last-300 tripwire, Telegram alerts
+
 Usage: python daily_nba.py [--date YYYY-MM-DD]
 """
 import argparse, json, math, os, sys, datetime as dt
+
 import numpy as np, pandas as pd, requests
 from sklearn.linear_model import LogisticRegression, Ridge
 from sklearn.preprocessing import StandardScaler
@@ -21,6 +24,7 @@ import tg_delta
 import board_format as BF
 import espn_roster as R
 import freshness as FR
+import mbm_checks as CHK
 import notify
 import spread
 import engine_nba as E
@@ -33,7 +37,7 @@ import engine_nba as E
 # file freshness, and folding it in would both raise on the comparison and trigger a
 # pointless rebackfill of 2,629 rows.
 SHARED_MIN = "2026-08-03"
-for _mod in (BF, notify, tg_delta, R, FR):
+for _mod in (BF, notify, tg_delta, R, FR, CHK):
     _have = getattr(_mod, "VERSION", "")
     if _have < SHARED_MIN:
         raise ImportError(
@@ -66,11 +70,11 @@ SPEC = json.load(open(os.path.join(HERE, "spec.json")))
 CFG, C, A0 = SPEC["cfg"], SPEC["C"], SPEC["a0"]
 TRAIN_LO, TRAIN_HI = 2019, 2026
 CAL_MIN_GP = SPEC.get("cal_min_gp", 8)
+
 # Tracks board_format rather than restating it. This is the console-side copy, and a
 # local 0.05 here while board_format ran at 0.00 meant the Actions log and Discord
 # quoted different prices for the same game.
 MIN_EDGE = BF.MIN_EDGE
-
 SP_LINES = [-7.5, -3.5, -0.5, 3.5, 7.5]     # margin thresholds logged for grading
 SP_COLS = ["p_sp_m75", "p_sp_m35", "p_sp_m05", "p_sp_p35", "p_sp_p75"]
 
@@ -88,8 +92,10 @@ def min_odds(p):
     p = min(max(float(p), 0.01), 0.99)
     return math.ceil((1 + MIN_EDGE) / p * 100) / 100.0
 
+
 def season_end_year(d):
     return d.year + 1 if d.month >= 8 else d.year
+
 
 def download_data(cur):
     os.makedirs(DATA, exist_ok=True)
@@ -107,18 +113,19 @@ def download_data(cur):
                 except Exception:
                     pass
 
+
 def _years():
     """Seasons with a COMPLETE set of parquet files, not just a schedule.
 
-    hoopR publishes the schedule for a season as soon as the fixtures are announced, and
-    the box scores only once games are played. Measured 2026-08-19: nba_schedule_2027 was
-    HTTP 200 while team_box_2027 was a 404. Keying on the schedule alone put 2027 in the
-    year list, load_team_box then opened a file that was never downloaded, and the run died
-    with FileNotFoundError before boarding anything.
+    hoopR publishes a season's schedule as soon as the fixtures are announced and the box
+    scores only once games are played. Measured 2026-08-19: nba_schedule_2027 returned HTTP
+    200 while team_box_2027 was a 404. Keying on the schedule alone put 2027 in the year
+    list, load_team_box then opened a file that was never downloaded, and the run died with
+    FileNotFoundError in thirty seconds, before boarding anything.
 
-    Same shape as the soccer failure a few days earlier: a source that publishes one file
-    of a set before the rest, and a reader that assumes the set arrives together. Require
-    all three, and a season joins the moment it is genuinely usable.
+    Same shape as the soccer failure days earlier: a source that publishes one file of a set
+    before the rest, and a reader that assumes the set arrives together. Require all three,
+    and a season joins the moment it is genuinely usable.
     """
     ys = []
     for y in range(2018, 2035):
@@ -128,9 +135,10 @@ def _years():
         elif os.path.exists(os.path.join(DATA, f"sched_{y}.parquet")):
             missing = [k for k in ("team", "player")
                        if not os.path.exists(os.path.join(DATA, f"{k}_{y}.parquet"))]
-            print(f"season {y}: schedule present but {', '.join(missing)} box not published "
-                  f"yet, skipping until it is")
+            print(f"season {y}: schedule present but {', '.join(missing)} box not "
+                  f"published yet, skipping until it is")
     return ys
+
 
 def load_games(years):
     rows = []
@@ -157,6 +165,7 @@ def load_games(years):
     g.loc[bubble, "neutral"] = True
     return g.sort_values(["game_date","game_id"]).reset_index(drop=True)
 
+
 def load_team_box(years):
     t = pd.concat([pd.read_parquet(os.path.join(DATA, f"team_{y}.parquet")) for y in years],
                   ignore_index=True)
@@ -169,6 +178,7 @@ def load_team_box(years):
     t["efg"] = (t.field_goals_made + 0.5*t.three_point_field_goals_made) / t.field_goals_attempted
     t["tovr"] = t.total_turnovers / t.poss
     return {(r.game_id, r.team_abbreviation): r for r in t.itertuples()}
+
 
 def load_player_box(years):
     from collections import defaultdict
@@ -189,6 +199,7 @@ def load_player_box(years):
         by_game[gid][tm] = [(str(a), m, gs, pm) for a, m, gs, pm in
                             grp[["athlete_id","min","gmsc","plus_minus"]].values]
     return by_game
+
 
 def fetch_slate_espn(dates):
     out = []
@@ -213,6 +224,7 @@ def fetch_slate_espn(dates):
             out.append(dict(game_id=str(e["id"]), date=pd.Timestamp(d.date()),
                             home=hb, away=ab, neutral=bool(c.get("neutralSite"))))
     return out
+
 
 def rosters_and_outs(day):
     """Tonight's rosters and who is unavailable, in one sweep of the roster endpoint.
@@ -259,6 +271,7 @@ def expected_actives_from_box(pbox_hist, g_hist, team, out_ids):
 
 
 def run(today_str):
+    chk = CHK.Reporter("NBA", today_str)
     today = pd.Timestamp(today_str)
     cur = season_end_year(today)
     download_data(cur)
@@ -266,7 +279,6 @@ def run(today_str):
     g = load_games(years)
     tbox = load_team_box(years)
     pbox = load_player_box(years)
-
     horizon = [today + pd.Timedelta(days=i) for i in range(0, 3)]
     sched_up = g[g.home_win.isna() & g.game_date.isin([h.normalize() for h in horizon])]
     slate = [dict(game_id=r.game_id, date=r.game_date, home=r.home_abbreviation,
@@ -280,8 +292,8 @@ def run(today_str):
     # "is it today's data" test: a league that did not play yesterday is current with old
     # data. It asks whether any completed game exists that this history has not seen.
     _newest = pd.to_datetime(g[g.home_win.notna()].game_date).max().date()
-    _miss, _ = FR.missed_games("basketball/nba", _newest)
-    FR.guard("NBA", _newest, "basketball/nba")
+    _miss, _, _probe_failed = FR.missed_games("basketball/nba", _newest)
+    FR.guard("NBA", _newest, "basketball/nba", grace_days=1, reporter=chk)
     FRESH_LINE = FR.board_line(_newest, checked=(_newest, _miss))
     SEASON_LINE = None
 
@@ -289,7 +301,6 @@ def run(today_str):
     # Minutes are looked up by athlete across the league, not within a team, so a player
     # traded in this week is scored on what she has actually been playing.
     mins = R.recent_minutes(pbox, g, today)
-
     pseudo = []
     for s in slate:
         pbox[s["game_id"]] = {
@@ -309,6 +320,7 @@ def run(today_str):
     df = df.merge(scores, left_on="game_id", right_index=True, how="left")
     df["margin"] = df.home_score - df.away_score
     df["tot"] = df.home_score + df.away_score
+
     tr = (df.season >= TRAIN_LO) & (df.season <= TRAIN_HI) & df.home_win.notna()
     sc = StandardScaler().fit(df.loc[tr, E.NEW_FEATS].values)
     mdl = LogisticRegression(C=C, max_iter=2000).fit(
@@ -321,6 +333,7 @@ def run(today_str):
     sct = StandardScaler().fit(trm[TTF].values)
     mt = Ridge(alpha=5.0).fit(sct.transform(trm[TTF].values), trm.tot.values)
     base = float(df.loc[tr, "home_win"].mean())
+
     # Spread head. Conditional on the winner, so P(margin>0) equals the moneyline number
     # exactly. Magnitude weights are fitted, not hardcoded.
     SH = spread.fit(df.assign(margin=df.margin), E.NEW_FEATS, tr & df.margin.notna(), C)
@@ -335,7 +348,6 @@ def run(today_str):
     pred_path = os.path.join(LOGS, "predictions.csv")
     log = pd.read_csv(pred_path, dtype={"game_id": str}) if os.path.exists(pred_path) else \
         pd.DataFrame(columns=["date","game_id","home","away","p_home","p_elo","model"])
-
 
     # One-time backfill: fill the spread columns for games logged before the spread head
     # existed, so the dashboard has history to grade instead of waiting a season. Self
@@ -429,6 +441,7 @@ def run(today_str):
     _m = df.dropna(subset=["margin"]).drop_duplicates("game_id")
     log["final_margin"] = log.game_id.astype(str).map(
         pd.Series(_m.margin.values, index=_m.game_id.astype(str)))
+    chk.finish(strict=True, require=["freshness"])
     log.to_csv(pred_path, index=False)
     dec = log[log.result.notna()]
     if len(dec) >= 30:
@@ -506,6 +519,7 @@ def run(today_str):
                              # shifts the threshold and rewrites this.
                              "match": pk,
                              "cal": incal}
+
     print("\n=== MBM NBA board ===")
     for _v in push.values():
         print(_v["line"])
@@ -537,6 +551,7 @@ def run(today_str):
         print("no board to send")
     else:
         print("board unchanged since the last push, nothing sent")
+
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
