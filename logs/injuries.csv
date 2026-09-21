@@ -2220,6 +2220,7 @@ date,league,athlete_id,player,team,status
 2026-09-21,NBA,4431941,RayJ Dennis,ATL,Day-To-Day
 2026-09-21,NBA,4585618,Keshon Gilbert,ATL,Day-To-Day
 2026-09-21,NBA,4712863,Mouhamed Gueye,ATL,Day-To-Day
+2026-09-21,NBA,5105571,Henri Veesaar,ATL,Out
 2026-09-21,NBA,4065648,Jayson Tatum,BOS,Day-To-Day
 2026-09-21,NBA,5279130,Nolan Traore,BKN,Day-To-Day
 2026-09-21,NBA,4433287,Brandon Miller,CHA,Day-To-Day
@@ -2250,6 +2251,7 @@ date,league,athlete_id,player,team,status
 2026-09-21,NBA,4900671,Ajay Mitchell,OKC,Day-To-Day
 2026-09-21,NBA,5106270,Otega Oweh,OKC,Day-To-Day
 2026-09-21,NBA,5061603,Thomas Sorber,OKC,Day-To-Day
+2026-09-21,NBA,4593803,Jalen Williams,OKC,Day-To-Day
 2026-09-21,NBA,4065654,Jonathan Isaac,ORL,Day-To-Day
 2026-09-21,NBA,5107251,Izaiyah Nelson,ORL,Day-To-Day
 2026-09-21,NBA,4566434,Franz Wagner,ORL,Day-To-Day
@@ -2272,3 +2274,4 @@ date,league,athlete_id,player,team,status
 2026-09-21,NBA,4433268,Trey Alexander,UTAH,Day-To-Day
 2026-09-21,NBA,4277961,Jaren Jackson Jr.,UTAH,Day-To-Day
 2026-09-21,NBA,4606840,Jamir Watkins,WSH,Out
+2026-09-21,NBA,4277905,Trae Young,WSH,Day-To-Day
