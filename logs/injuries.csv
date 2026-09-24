@@ -2390,6 +2390,7 @@ date,league,athlete_id,player,team,status
 2026-09-23,NBA,4277961,Jaren Jackson Jr.,UTAH,Day-To-Day
 2026-09-23,NBA,4606840,Jamir Watkins,WSH,Out
 2026-09-23,NBA,4277905,Trae Young,WSH,Day-To-Day
+2026-09-24,NBA,4396993,Tyrese Haliburton,IND,Day-To-Day
 2026-09-24,NBA,4431941,RayJ Dennis,ATL,Day-To-Day
 2026-09-24,NBA,4585618,Keshon Gilbert,ATL,Day-To-Day
 2026-09-24,NBA,4712863,Mouhamed Gueye,ATL,Day-To-Day
@@ -2406,7 +2407,6 @@ date,league,athlete_id,player,team,status
 2026-09-24,NBA,4698719,Trevon Brazile,DEN,Day-To-Day
 2026-09-24,NBA,6430,Jimmy Butler III,GS,Out
 2026-09-24,NBA,2991235,Steven Adams,HOU,Day-To-Day
-2026-09-24,NBA,4396993,Tyrese Haliburton,IND,Day-To-Day
 2026-09-24,NBA,6580,Bradley Beal,LAC,Day-To-Day
 2026-09-24,NBA,3913176,Brandon Ingram,LAC,Day-To-Day
 2026-09-24,NBA,4396818,Jordan Miller,LAC,Out
@@ -2424,6 +2424,7 @@ date,league,athlete_id,player,team,status
 2026-09-24,NBA,4900671,Ajay Mitchell,OKC,Day-To-Day
 2026-09-24,NBA,5106270,Otega Oweh,OKC,Day-To-Day
 2026-09-24,NBA,5061603,Thomas Sorber,OKC,Day-To-Day
+2026-09-24,NBA,5159925,Nikola Topic,OKC,Day-To-Day
 2026-09-24,NBA,4593803,Jalen Williams,OKC,Day-To-Day
 2026-09-24,NBA,4065654,Jonathan Isaac,ORL,Day-To-Day
 2026-09-24,NBA,5107251,Izaiyah Nelson,ORL,Day-To-Day
@@ -2445,5 +2446,7 @@ date,league,athlete_id,player,team,status
 2026-09-24,NBA,5093267,Collin Murray-Boyles,TOR,Day-To-Day
 2026-09-24,NBA,4433268,Trey Alexander,UTAH,Day-To-Day
 2026-09-24,NBA,4277961,Jaren Jackson Jr.,UTAH,Day-To-Day
+2026-09-24,NBA,6583,Anthony Davis,WSH,Day-To-Day
+2026-09-24,NBA,5160992,Alex Sarr,WSH,Day-To-Day
 2026-09-24,NBA,4606840,Jamir Watkins,WSH,Out
 2026-09-24,NBA,4277905,Trae Young,WSH,Day-To-Day
