@@ -109,6 +109,7 @@ class Decay:
     def season_break(self, keep): self.sw *= keep; self.sx *= keep
     def val(self, default): return self.sx/self.sw if self.sw > 1e-9 else default
 
+PREGAME_AVAIL = True
 def build_features(g, tbox, pbox, cfg):
     HL_F, HL_S, CARRY, ELO_K, ELO_HA, TAU = (cfg["hl_fast"], cfg["hl_slow"], cfg["carry"],
                                              cfg["elo_k"], cfg["elo_ha"], cfg["tau"])
@@ -124,6 +125,7 @@ def build_features(g, tbox, pbox, cfg):
     pstate = {}                                      # athlete -> dict of decayed sums
     last_lineup = {}                                 # team -> list of (athlete, minshare, rating)
     team_l10 = {}                                    # team -> deque of {athlete: minutes} per game
+    recent_games = defaultdict(lambda: deque(maxlen=3))   # team -> last three game ids, for pregame availability
     lg_or = Decay(200)
 
     def p_rating(aid):
@@ -172,9 +174,21 @@ def build_features(g, tbox, pbox, cfg):
                         f"{side}_std_efga": np.mean(std[tm]["efga"]) if gp else 0.44,
                         f"{side}_std_tovr": np.mean(std[tm]["tovr"]) if gp else 0.17,
                         f"{side}_std_orb": np.mean(std[tm]["orb"]) if gp else 0.28})
-            # availability from today's actives (deployment: injury report + confirmed rotation)
-            plist = pbox.get(gid, {}).get(tm, [])
-            act = [(aid, m) for aid, m, gs, pm in plist if m and m > 0]
+            # availability, PREGAME (2026-09-24): who played in the team's last three games,
+            # at their max minutes. The box score of the game being predicted is never read
+            # here; that was a lookahead worth 0.013 log loss on the holdouts, and it made the
+            # trained weights expect information the live runner (ESPN roster minus Outs) does
+            # not have. Set PREGAME_AVAIL = False to reproduce the old numbers.
+            if PREGAME_AVAIL and not (isinstance(r.home_score, float) and math.isnan(r.home_score)):
+                seen = {}
+                for pg in recent_games[tm]:
+                    for aid, m, gs, pm in pbox.get(pg, {}).get(tm, []):
+                        if m and m > 0:
+                            seen[aid] = max(seen.get(aid, 0.0), float(m))
+                act = list(seen.items())
+            else:
+                plist = pbox.get(gid, {}).get(tm, [])
+                act = [(aid, m) for aid, m, gs, pm in plist if m and m > 0]
             window = team_l10.get(tm, deque())
             l10min = defaultdict(float)
             for gm in window:
@@ -236,6 +250,7 @@ def build_features(g, tbox, pbox, cfg):
             lineup.sort(key=lambda x: -x[1])
             last_lineup[tm] = lineup[:8]
             team_l10.setdefault(tm, deque(maxlen=10)).append({aid: (m or 0.0) for aid, m, _, _ in plist})
+            recent_games[tm].append(gid)
     return pd.DataFrame(feats)
 
 def metrics(y, p, label, n=None):
