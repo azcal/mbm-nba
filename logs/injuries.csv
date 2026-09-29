@@ -2690,6 +2690,11 @@ date,league,athlete_id,player,team,status
 2026-09-28,NBA,5160992,Alex Sarr,WSH,Day-To-Day
 2026-09-28,NBA,4606840,Jamir Watkins,WSH,Out
 2026-09-28,NBA,4277905,Trae Young,WSH,Day-To-Day
+2026-09-29,NBA,4848625,Dailyn Swain,CHI,Day-To-Day
+2026-09-29,NBA,2991235,Steven Adams,HOU,Day-To-Day
+2026-09-29,NBA,4066261,Bam Adebayo,MIA,Day-To-Day
+2026-09-29,NBA,3032977,Giannis Antetokounmpo,MIA,Day-To-Day
+2026-09-29,NBA,4432645,Trevor Keels,WSH,Day-To-Day
 2026-09-29,NBA,4431941,RayJ Dennis,ATL,Day-To-Day
 2026-09-29,NBA,4585618,Keshon Gilbert,ATL,Day-To-Day
 2026-09-29,NBA,4712863,Mouhamed Gueye,ATL,Day-To-Day
@@ -2698,17 +2703,18 @@ date,league,athlete_id,player,team,status
 2026-09-29,NBA,5061575,Kon Knueppel,CHA,Day-To-Day
 2026-09-29,NBA,4066218,Grant Williams,CHA,Day-To-Day
 2026-09-29,NBA,4066650,Zach Collins,CHI,Day-To-Day
-2026-09-29,NBA,4848625,Dailyn Swain,CHI,Day-To-Day
 2026-09-29,NBA,4576087,Peyton Watson,CLE,Day-To-Day
 2026-09-29,NBA,4593125,Santi Aldama,DAL,Day-To-Day
 2026-09-29,NBA,6442,Kyrie Irving,DAL,Day-To-Day
 2026-09-29,NBA,4873153,Morez Johnson Jr.,DAL,Day-To-Day
 2026-09-29,NBA,4683688,Dereck Lively II,DAL,Day-To-Day
 2026-09-29,NBA,4698719,Trevon Brazile,DEN,Day-To-Day
+2026-09-29,NBA,4433621,Jalen Duren,DET,Day-To-Day
 2026-09-29,NBA,6430,Jimmy Butler III,GS,Out
 2026-09-29,NBA,4432171,Moses Moody,GS,Out
 2026-09-29,NBA,3102531,Kristaps Porzingis,GS,Day-To-Day
-2026-09-29,NBA,2991235,Steven Adams,HOU,Day-To-Day
+2026-09-29,NBA,5170949,Alex Toohey,GS,Day-To-Day
+2026-09-29,NBA,2580365,Larry Nance Jr.,IND,Day-To-Day
 2026-09-29,NBA,6580,Bradley Beal,LAC,Day-To-Day
 2026-09-29,NBA,3913176,Brandon Ingram,LAC,Out
 2026-09-29,NBA,4396818,Jordan Miller,LAC,Out
@@ -2718,8 +2724,6 @@ date,league,athlete_id,player,team,status
 2026-09-29,NBA,5231919,Karim Lopez,MEM,Day-To-Day
 2026-09-29,NBA,4432185,Micah Peavy,MEM,Day-To-Day
 2026-09-29,NBA,4431785,Scotty Pippen Jr.,MEM,Day-To-Day
-2026-09-29,NBA,4066261,Bam Adebayo,MIA,Day-To-Day
-2026-09-29,NBA,3032977,Giannis Antetokounmpo,MIA,Day-To-Day
 2026-09-29,NBA,5107157,Ryan Conwell,MIA,Day-To-Day
 2026-09-29,NBA,4431772,Myron Gardner,MIA,Day-To-Day
 2026-09-29,NBA,3934673,Donte DiVincenzo,MIN,Out
@@ -2747,7 +2751,6 @@ date,league,athlete_id,player,team,status
 2026-09-29,NBA,4433268,Trey Alexander,UTAH,Day-To-Day
 2026-09-29,NBA,4277961,Jaren Jackson Jr.,UTAH,Day-To-Day
 2026-09-29,NBA,6583,Anthony Davis,WSH,Day-To-Day
-2026-09-29,NBA,4432645,Trevor Keels,WSH,Day-To-Day
 2026-09-29,NBA,5160992,Alex Sarr,WSH,Day-To-Day
 2026-09-29,NBA,4606840,Jamir Watkins,WSH,Out
 2026-09-29,NBA,4277905,Trae Young,WSH,Day-To-Day
