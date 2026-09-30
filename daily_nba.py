@@ -4,7 +4,7 @@ MBM NBA daily runner (rebuild v1.1, frozen spec).
 - Downloads hoopR parquet history fresh each run; current-season file refreshes nightly
 - Slate from hoopR schedule with ESPN scoreboard fallback (reg/postseason only)
 - Availability: ESPN NBA injury feed (players listed Out removed from projected actives)
-- Boards upcoming games (2-day horizon): p(home), model margin, model total
+- Boards upcoming games (today and tomorrow): p(home), model margin, model total
 - CALIBRATION GATE: value lines suppressed until EVERY team has 8+ GP, on the
   console AND the pushed board
 - Grades logged predictions, last-300 tripwire, Telegram alerts
@@ -279,7 +279,7 @@ def run(today_str):
     g = load_games(years)
     tbox = load_team_box(years)
     pbox = load_player_box(years)
-    horizon = [today + pd.Timedelta(days=i) for i in range(0, 3)]
+    horizon = [today + pd.Timedelta(days=i) for i in range(0, 2)]   # today and tomorrow only
     sched_up = g[g.home_win.isna() & g.game_date.isin([h.normalize() for h in horizon])]
     slate = [dict(game_id=r.game_id, date=r.game_date, home=r.home_abbreviation,
                   away=r.away_abbreviation, neutral=bool(r.neutral)) for r in sched_up.itertuples()]
@@ -432,7 +432,7 @@ def run(today_str):
                 for ln in spread_ladder(bi, sp_ph, sp_Ph, sp_Pa, sp_exp, r.home, r.away):
                     print(ln)
     else:
-        print("no games in the next 2 days")
+        print("no games today or tomorrow")
 
     fin = g.set_index("game_id")["home_win"]
     log["result"] = log.game_id.map(fin)
@@ -467,7 +467,9 @@ def run(today_str):
         _grid = np.arange(-40.5, 41.0, 1.0)
         _cf = lambda k: spread.cover(sp_ph, sp_Ph, sp_Pa, k)
         bd = []
-        for bi, (_, r) in enumerate(board.iterrows()):
+        _order = board.sort_values(["date", "game_id"]).index.tolist()
+        for bi in _order:
+            r = board.loc[bi]
             if not gate_open:
                 # The gate was checked in the console print and nowhere else, so the
                 # opening weeks would have published priced value lines to the channel.
