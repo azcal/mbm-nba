@@ -474,7 +474,7 @@ def run(today_str):
                 # The gate was checked in the console print and nowhere else, so the
                 # opening weeks would have published priced value lines to the channel.
                 # A calibration row carries the model's own line and no price at all.
-                bd.append((str(r.date)[:10], f"{r.away} @ {r.home}",
+                bd.append((str(r.date)[:10], f"{r.away} @ {r.home} ({pd.Timestamp(r.date).strftime('%a')})",
                            BF.spread_pick(r.home, r.away, float(sp_line[bi])),
                            r.game_id, float(p[bi]), True))
                 continue
@@ -489,12 +489,21 @@ def run(today_str):
             if not parts:
                 skipped += 1
                 continue
-            bd.append((str(r.date)[:10], f"{r.away} @ {r.home}", " / ".join(parts),
+            bd.append((str(r.date)[:10], f"{r.away} @ {r.home} ({pd.Timestamp(r.date).strftime('%a')})", " / ".join(parts),
                        r.game_id, float(p[bi]), False))
         if bd:
             wg = max([len(x[1]) for x in bd] + [10])
             wp = max([len(x[2]) for x in bd] + [8])
+            def _day_tag(d_):
+                dd = pd.Timestamp(d_); rel = (dd.normalize() - today.normalize()).days
+                when = "Tonight" if rel <= 0 else ("Tomorrow" if rel == 1 else dd.strftime("%A"))
+                return when, dd.strftime("%a %b %-d")
+            _last_day = None
             for d_, gm, pk, gid, ph_i, incal in bd:
+                if d_ != _last_day:
+                    when, nice = _day_tag(d_); n_day = sum(1 for x in bd if x[0] == d_)
+                    push[f"day:{d_}"] = {"line": f"{d_}  {when}, {nice}: {n_day} game{'s' if n_day != 1 else ''}", "min_odds": None, "match": None}
+                    _last_day = d_
                 if incal:
                     ln = (f"{d_}  {gm}  ·  calibration, model {pk}, gate opens at "
                           f"{CAL_MIN_GP} GP (lowest now {min_gp})")
