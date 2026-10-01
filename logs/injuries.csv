@@ -2815,6 +2815,16 @@ date,league,athlete_id,player,team,status
 2026-09-30,NBA,5160992,Alex Sarr,WSH,Day-To-Day
 2026-09-30,NBA,4606840,Jamir Watkins,WSH,Out
 2026-09-30,NBA,4277905,Trae Young,WSH,Day-To-Day
+2026-10-01,NBA,4896372,Walter Clayton Jr.,MEM,Day-To-Day
+2026-10-01,NBA,4431785,Scotty Pippen Jr.,MEM,Day-To-Day
+2026-10-01,NBA,5107157,Ryan Conwell,MIA,Day-To-Day
+2026-10-01,NBA,4592401,N'Faly Dante,NY,Out
+2026-10-01,NBA,4222252,Isaiah Hartenstein,OKC,Day-To-Day
+2026-10-01,NBA,4900671,Ajay Mitchell,OKC,Day-To-Day
+2026-10-01,NBA,2581018,Kentavious Caldwell-Pope,PHI,Day-To-Day
+2026-10-01,NBA,4277961,Jaren Jackson Jr.,UTAH,Day-To-Day
+2026-10-01,NBA,6583,Anthony Davis,WSH,Day-To-Day
+2026-10-01,NBA,4277905,Trae Young,WSH,Day-To-Day
 2026-10-01,NBA,4431941,RayJ Dennis,ATL,Day-To-Day
 2026-10-01,NBA,4585618,Keshon Gilbert,ATL,Day-To-Day
 2026-10-01,NBA,4712863,Mouhamed Gueye,ATL,Day-To-Day
@@ -2839,19 +2849,14 @@ date,league,athlete_id,player,team,status
 2026-10-01,NBA,3913176,Brandon Ingram,LAC,Out
 2026-10-01,NBA,4396818,Jordan Miller,LAC,Out
 2026-10-01,NBA,5108024,Yanic Konan Niederhauser,LAC,Out
-2026-10-01,NBA,4896372,Walter Clayton Jr.,MEM,Day-To-Day
 2026-10-01,NBA,4600663,Zach Edey,MEM,Day-To-Day
 2026-10-01,NBA,5231919,Karim Lopez,MEM,Day-To-Day
 2026-10-01,NBA,4432185,Micah Peavy,MEM,Day-To-Day
-2026-10-01,NBA,4431785,Scotty Pippen Jr.,MEM,Day-To-Day
-2026-10-01,NBA,5107157,Ryan Conwell,MIA,Day-To-Day
 2026-10-01,NBA,4431772,Myron Gardner,MIA,Day-To-Day
+2026-10-01,NBA,4066993,Dru Smith,MIA,Day-To-Day
 2026-10-01,NBA,3934673,Donte DiVincenzo,MIN,Out
-2026-10-01,NBA,4592401,N'Faly Dante,NY,Out
 2026-10-01,NBA,5289900,Mohamed Diawara,NY,Day-To-Day
 2026-10-01,NBA,3914285,Drew Eubanks,NY,Day-To-Day
-2026-10-01,NBA,4222252,Isaiah Hartenstein,OKC,Day-To-Day
-2026-10-01,NBA,4900671,Ajay Mitchell,OKC,Day-To-Day
 2026-10-01,NBA,5106270,Otega Oweh,OKC,Day-To-Day
 2026-10-01,NBA,5061603,Thomas Sorber,OKC,Day-To-Day
 2026-10-01,NBA,5159925,Nikola Topic,OKC,Day-To-Day
@@ -2860,7 +2865,7 @@ date,league,athlete_id,player,team,status
 2026-10-01,NBA,5107251,Izaiyah Nelson,ORL,Out
 2026-10-01,NBA,5214637,Noah Penda,ORL,Day-To-Day
 2026-10-01,NBA,5105637,Adem Bona,PHI,Day-To-Day
-2026-10-01,NBA,2581018,Kentavious Caldwell-Pope,PHI,Day-To-Day
+2026-10-01,NBA,3904625,Tacko Fall,PHI,Out
 2026-10-01,NBA,4702602,CJ Huntley,PHX,Day-To-Day
 2026-10-01,NBA,4066268,Duop Reath,PHX,Day-To-Day
 2026-10-01,NBA,4701232,Mark Williams,PHX,Out
@@ -2871,8 +2876,6 @@ date,league,athlete_id,player,team,status
 2026-10-01,NBA,4590360,Chucky Hepburn,TOR,Day-To-Day
 2026-10-01,NBA,4702656,Alijah Martin,TOR,Day-To-Day
 2026-10-01,NBA,4433268,Trey Alexander,UTAH,Day-To-Day
-2026-10-01,NBA,4277961,Jaren Jackson Jr.,UTAH,Day-To-Day
-2026-10-01,NBA,6583,Anthony Davis,WSH,Day-To-Day
 2026-10-01,NBA,5160992,Alex Sarr,WSH,Day-To-Day
+2026-10-01,NBA,4997537,Tristan Vukcevic,WSH,Out
 2026-10-01,NBA,4606840,Jamir Watkins,WSH,Out
-2026-10-01,NBA,4277905,Trae Young,WSH,Day-To-Day
