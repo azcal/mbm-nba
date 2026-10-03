@@ -2937,6 +2937,8 @@ date,league,athlete_id,player,team,status
 2026-10-02,NBA,5160992,Alex Sarr,WSH,Day-To-Day
 2026-10-02,NBA,4997537,Tristan Vukcevic,WSH,Out
 2026-10-02,NBA,4606840,Jamir Watkins,WSH,Out
+2026-10-03,NBA,4431772,Myron Gardner,MIA,Day-To-Day
+2026-10-03,NBA,5289900,Mohamed Diawara,NY,Day-To-Day
 2026-10-03,NBA,4431941,RayJ Dennis,ATL,Day-To-Day
 2026-10-03,NBA,4585618,Keshon Gilbert,ATL,Day-To-Day
 2026-10-03,NBA,4712863,Mouhamed Gueye,ATL,Day-To-Day
@@ -2951,6 +2953,8 @@ date,league,athlete_id,player,team,status
 2026-10-03,NBA,4873153,Morez Johnson Jr.,DAL,Day-To-Day
 2026-10-03,NBA,4683688,Dereck Lively II,DAL,Day-To-Day
 2026-10-03,NBA,4698719,Trevon Brazile,DEN,Day-To-Day
+2026-10-03,NBA,4592427,Spencer Jones,DEN,Day-To-Day
+2026-10-03,NBA,4433621,Jalen Duren,DET,Day-To-Day
 2026-10-03,NBA,6430,Jimmy Butler III,GS,Out
 2026-10-03,NBA,4432171,Moses Moody,GS,Out
 2026-10-03,NBA,3102531,Kristaps Porzingis,GS,Day-To-Day
@@ -2963,11 +2967,9 @@ date,league,athlete_id,player,team,status
 2026-10-03,NBA,4600663,Zach Edey,MEM,Day-To-Day
 2026-10-03,NBA,5231919,Karim Lopez,MEM,Day-To-Day
 2026-10-03,NBA,4432185,Micah Peavy,MEM,Day-To-Day
-2026-10-03,NBA,4431772,Myron Gardner,MIA,Day-To-Day
 2026-10-03,NBA,4431786,Keshad Johnson,MIA,Out
 2026-10-03,NBA,4066993,Dru Smith,MIA,Day-To-Day
 2026-10-03,NBA,3934673,Donte DiVincenzo,MIN,Out
-2026-10-03,NBA,5289900,Mohamed Diawara,NY,Day-To-Day
 2026-10-03,NBA,3914285,Drew Eubanks,NY,Day-To-Day
 2026-10-03,NBA,5106270,Otega Oweh,OKC,Day-To-Day
 2026-10-03,NBA,5061603,Thomas Sorber,OKC,Day-To-Day
