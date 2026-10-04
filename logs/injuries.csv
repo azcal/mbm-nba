@@ -2996,6 +2996,7 @@ date,league,athlete_id,player,team,status
 2026-10-03,NBA,5160992,Alex Sarr,WSH,Day-To-Day
 2026-10-03,NBA,4997537,Tristan Vukcevic,WSH,Out
 2026-10-03,NBA,4606840,Jamir Watkins,WSH,Out
+2026-10-04,NBA,4590360,Chucky Hepburn,TOR,Day-To-Day
 2026-10-04,NBA,4431941,RayJ Dennis,ATL,Day-To-Day
 2026-10-04,NBA,4585618,Keshon Gilbert,ATL,Day-To-Day
 2026-10-04,NBA,4712863,Mouhamed Gueye,ATL,Day-To-Day
@@ -3016,6 +3017,8 @@ date,league,athlete_id,player,team,status
 2026-10-04,NBA,4432171,Moses Moody,GS,Out
 2026-10-04,NBA,3102531,Kristaps Porzingis,GS,Day-To-Day
 2026-10-04,NBA,5170949,Alex Toohey,GS,Day-To-Day
+2026-10-04,NBA,4592829,Quenton Jackson,IND,Day-To-Day
+2026-10-04,NBA,2530530,T.J. McConnell,IND,Day-To-Day
 2026-10-04,NBA,2580365,Larry Nance Jr.,IND,Day-To-Day
 2026-10-04,NBA,6580,Bradley Beal,LAC,Day-To-Day
 2026-10-04,NBA,3913176,Brandon Ingram,LAC,Out
@@ -3046,7 +3049,6 @@ date,league,athlete_id,player,team,status
 2026-10-04,NBA,4431893,Jamison Battle,TOR,Day-To-Day
 2026-10-04,NBA,4432586,Nate Bittle,TOR,Day-To-Day
 2026-10-04,NBA,5149115,Allen Graves,TOR,Day-To-Day
-2026-10-04,NBA,4590360,Chucky Hepburn,TOR,Day-To-Day
 2026-10-04,NBA,4431684,Trayce Jackson-Davis,TOR,Day-To-Day
 2026-10-04,NBA,6450,Kawhi Leonard,TOR,Day-To-Day
 2026-10-04,NBA,4702656,Alijah Martin,TOR,Day-To-Day
