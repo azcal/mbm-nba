@@ -3227,6 +3227,7 @@ date,league,athlete_id,player,team,status
 2026-10-06,NBA,5160992,Alex Sarr,WSH,Day-To-Day
 2026-10-06,NBA,4997537,Tristan Vukcevic,WSH,Out
 2026-10-06,NBA,4606840,Jamir Watkins,WSH,Out
+2026-10-07,NBA,4432811,Josh Green,UTAH,Day-To-Day
 2026-10-07,NBA,4397020,Luguentz Dort,ATL,Day-To-Day
 2026-10-07,NBA,4712863,Mouhamed Gueye,ATL,Day-To-Day
 2026-10-07,NBA,2490149,CJ McCollum,ATL,Day-To-Day
@@ -3249,8 +3250,17 @@ date,league,athlete_id,player,team,status
 2026-10-07,NBA,4592427,Spencer Jones,DEN,Day-To-Day
 2026-10-07,NBA,4433621,Jalen Duren,DET,Day-To-Day
 2026-10-07,NBA,6430,Jimmy Butler III,GS,Out
+2026-10-07,NBA,3975,Stephen Curry,GS,Day-To-Day
+2026-10-07,NBA,6589,Draymond Green,GS,Day-To-Day
+2026-10-07,NBA,3213,Al Horford,GS,Day-To-Day
+2026-10-07,NBA,5175737,Yaxel Lendeborg,GS,Day-To-Day
+2026-10-07,NBA,4066436,De'Anthony Melton,GS,Day-To-Day
 2026-10-07,NBA,4432171,Moses Moody,GS,Out
+2026-10-07,NBA,2990969,Georges Niang,GS,Day-To-Day
+2026-10-07,NBA,3134903,Gary Payton II,GS,Day-To-Day
+2026-10-07,NBA,4709138,Brandin Podziemski,GS,Day-To-Day
 2026-10-07,NBA,3102531,Kristaps Porzingis,GS,Day-To-Day
+2026-10-07,NBA,4997536,Gui Santos,GS,Day-To-Day
 2026-10-07,NBA,4592829,Quenton Jackson,IND,Day-To-Day
 2026-10-07,NBA,2530530,T.J. McConnell,IND,Day-To-Day
 2026-10-07,NBA,2580365,Larry Nance Jr.,IND,Day-To-Day
@@ -3271,7 +3281,9 @@ date,league,athlete_id,player,team,status
 2026-10-07,NBA,4432185,Micah Peavy,MEM,Day-To-Day
 2026-10-07,NBA,4432810,Isaiah Stewart,MEM,Day-To-Day
 2026-10-07,NBA,4431786,Keshad Johnson,MIA,Out
+2026-10-07,NBA,4601025,Pelle Larsson,MIA,Day-To-Day
 2026-10-07,NBA,4066993,Dru Smith,MIA,Day-To-Day
+2026-10-07,NBA,3059319,Andrew Wiggins,MIA,Day-To-Day
 2026-10-07,NBA,3934673,Donte DiVincenzo,MIN,Out
 2026-10-07,NBA,4277869,Jose Alvarado,NY,Day-To-Day
 2026-10-07,NBA,2991350,Alex Caruso,OKC,Day-To-Day
@@ -3310,7 +3322,6 @@ date,league,athlete_id,player,team,status
 2026-10-07,NBA,4431684,Trayce Jackson-Davis,TOR,Day-To-Day
 2026-10-07,NBA,6450,Kawhi Leonard,TOR,Day-To-Day
 2026-10-07,NBA,4684793,Kyle Filipowski,UTAH,Day-To-Day
-2026-10-07,NBA,4432811,Josh Green,UTAH,Day-To-Day
 2026-10-07,NBA,4066336,Lauri Markkanen,UTAH,Day-To-Day
 2026-10-07,NBA,3102530,Jusuf Nurkic,UTAH,Day-To-Day
 2026-10-07,NBA,5105839,Brice Sensabaugh,UTAH,Day-To-Day
