@@ -3816,16 +3816,28 @@ date,league,athlete_id,player,team,status
 2026-10-11,NBA,4606840,Jamir Watkins,WSH,Out
 2026-10-12,NBA,4278039,Nickeil Alexander-Walker,ATL,Day-To-Day
 2026-10-12,NBA,2578185,Dorian Finney-Smith,ATL,Day-To-Day
+2026-10-12,NBA,4278104,Michael Porter Jr.,BKN,Day-To-Day
+2026-10-12,NBA,4432194,Day'Ron Sharpe,BKN,Day-To-Day
+2026-10-12,NBA,4395626,Tre Jones,CHI,Day-To-Day
+2026-10-12,NBA,4397018,Ochai Agbaji,NY,Day-To-Day
+2026-10-12,NBA,4065673,Tony Bradley,NY,Day-To-Day
+2026-10-12,NBA,3914285,Drew Eubanks,NY,Day-To-Day
+2026-10-12,NBA,4411057,Kevin McCullar Jr.,NY,Day-To-Day
+2026-10-12,NBA,6450,Kawhi Leonard,TOR,Day-To-Day
+2026-10-12,NBA,4869342,Dyson Daniels,ATL,Day-To-Day
+2026-10-12,NBA,4397020,Luguentz Dort,ATL,Day-To-Day
 2026-10-12,NBA,4585618,Keshon Gilbert,ATL,Day-To-Day
 2026-10-12,NBA,4712863,Mouhamed Gueye,ATL,Day-To-Day
+2026-10-12,NBA,4701230,Jalen Johnson,ATL,Day-To-Day
+2026-10-12,NBA,2490149,CJ McCollum,ATL,Day-To-Day
+2026-10-12,NBA,4431680,Onyeka Okongwu,ATL,Day-To-Day
 2026-10-12,NBA,5105571,Henri Veesaar,ATL,Out
+2026-10-12,NBA,4397183,Aaron Wiggins,ATL,Day-To-Day
 2026-10-12,NBA,4433188,Devin Carter,BOS,Day-To-Day
 2026-10-12,NBA,4277951,Luka Garza,BOS,Day-To-Day
 2026-10-12,NBA,4397251,Ron Harper Jr.,BOS,Day-To-Day
 2026-10-12,NBA,5101761,Mikel Brown Jr.,BKN,Day-To-Day
 2026-10-12,NBA,4870564,Joshua Jefferson,BKN,Day-To-Day
-2026-10-12,NBA,4278104,Michael Porter Jr.,BKN,Day-To-Day
-2026-10-12,NBA,4432194,Day'Ron Sharpe,BKN,Day-To-Day
 2026-10-12,NBA,3135045,Grayson Allen,CHA,Day-To-Day
 2026-10-12,NBA,5060701,Christian Anderson,CHA,Day-To-Day
 2026-10-12,NBA,4684269,Kylan Boswell,CHA,Day-To-Day
@@ -3834,7 +3846,6 @@ date,league,athlete_id,player,team,status
 2026-10-12,NBA,4066218,Grant Williams,CHA,Day-To-Day
 2026-10-12,NBA,4278067,Nic Claxton,CHI,Day-To-Day
 2026-10-12,NBA,4066650,Zach Collins,CHI,Day-To-Day
-2026-10-12,NBA,4395626,Tre Jones,CHI,Day-To-Day
 2026-10-12,NBA,4898010,Jaylin Sellers,CHI,Day-To-Day
 2026-10-12,NBA,4997530,Khalifa Diop,CLE,Day-To-Day
 2026-10-12,NBA,5106268,Nae'Qwan Tomlin,CLE,Day-To-Day
@@ -3846,6 +3857,7 @@ date,league,athlete_id,player,team,status
 2026-10-12,NBA,4432166,Cade Cunningham,DET,Day-To-Day
 2026-10-12,NBA,4433621,Jalen Duren,DET,Day-To-Day
 2026-10-12,NBA,6430,Jimmy Butler III,GS,Out
+2026-10-12,NBA,3213,Al Horford,GS,Day-To-Day
 2026-10-12,NBA,4432171,Moses Moody,GS,Out
 2026-10-12,NBA,3102531,Kristaps Porzingis,GS,Day-To-Day
 2026-10-12,NBA,2991235,Steven Adams,HOU,Day-To-Day
@@ -3888,10 +3900,6 @@ date,league,athlete_id,player,team,status
 2026-10-12,NBA,4433247,Jonathan Kuminga,MIN,Day-To-Day
 2026-10-12,NBA,4431671,Jaden McDaniels,MIN,Day-To-Day
 2026-10-12,NBA,3907497,Dejounte Murray,NO,Day-To-Day
-2026-10-12,NBA,4397018,Ochai Agbaji,NY,Day-To-Day
-2026-10-12,NBA,4065673,Tony Bradley,NY,Day-To-Day
-2026-10-12,NBA,3914285,Drew Eubanks,NY,Day-To-Day
-2026-10-12,NBA,4411057,Kevin McCullar Jr.,NY,Day-To-Day
 2026-10-12,NBA,2991350,Alex Caruso,OKC,Day-To-Day
 2026-10-12,NBA,4278073,Shai Gilgeous-Alexander,OKC,Day-To-Day
 2026-10-12,NBA,4222252,Isaiah Hartenstein,OKC,Day-To-Day
@@ -3921,25 +3929,33 @@ date,league,athlete_id,player,team,status
 2026-10-12,NBA,3136193,Devin Booker,PHX,Day-To-Day
 2026-10-12,NBA,4066383,Miles Bridges,PHX,Day-To-Day
 2026-10-12,NBA,4701232,Mark Williams,PHX,Out
+2026-10-12,NBA,6606,Damian Lillard,POR,Day-To-Day
 2026-10-12,NBA,4914336,Shaedon Sharpe,POR,Out
+2026-10-12,NBA,4066211,Robert Williams III,POR,Day-To-Day
+2026-10-12,NBA,4706557,Chris Youngblood,POR,Day-To-Day
 2026-10-12,NBA,4433174,Dylan Cardwell,SAC,Day-To-Day
 2026-10-12,NBA,4066262,Malik Monk,SAC,Day-To-Day
 2026-10-12,NBA,4898371,Maxime Raynaud,SAC,Out
 2026-10-12,NBA,3155942,Domantas Sabonis,SAC,Day-To-Day
+2026-10-12,NBA,5061568,Carter Bryant,SA,Day-To-Day
+2026-10-12,NBA,4845367,Stephon Castle,SA,Day-To-Day
 2026-10-12,NBA,4066259,De'Aaron Fox,SA,Day-To-Day
+2026-10-12,NBA,5037871,Dylan Harper,SA,Day-To-Day
 2026-10-12,NBA,6440,Tobias Harris,SA,Day-To-Day
 2026-10-12,NBA,5101845,Jayden Quaintance,SA,Out
+2026-10-12,NBA,4395630,Devin Vassell,SA,Day-To-Day
+2026-10-12,NBA,5104157,Victor Wembanyama,SA,Day-To-Day
 2026-10-12,NBA,4277880,Malik Williams,SA,Day-To-Day
 2026-10-12,NBA,4432586,Nate Bittle,TOR,Day-To-Day
 2026-10-12,NBA,5149115,Allen Graves,TOR,Day-To-Day
 2026-10-12,NBA,4590360,Chucky Hepburn,TOR,Day-To-Day
 2026-10-12,NBA,4431684,Trayce Jackson-Davis,TOR,Day-To-Day
-2026-10-12,NBA,6450,Kawhi Leonard,TOR,Day-To-Day
 2026-10-12,NBA,4702656,Alijah Martin,TOR,Day-To-Day
 2026-10-12,NBA,4684793,Kyle Filipowski,UTAH,Day-To-Day
 2026-10-12,NBA,4066336,Lauri Markkanen,UTAH,Day-To-Day
 2026-10-12,NBA,3102530,Jusuf Nurkic,UTAH,Out
 2026-10-12,NBA,5105839,Brice Sensabaugh,UTAH,Day-To-Day
+2026-10-12,NBA,6583,Anthony Davis,WSH,Day-To-Day
 2026-10-12,NBA,4432819,Tre Mann,WSH,Day-To-Day
 2026-10-12,NBA,6609,Khris Middleton,WSH,Day-To-Day
 2026-10-12,NBA,4997537,Tristan Vukcevic,WSH,Out
