@@ -3960,6 +3960,9 @@ date,league,athlete_id,player,team,status
 2026-10-12,NBA,6609,Khris Middleton,WSH,Day-To-Day
 2026-10-12,NBA,4997537,Tristan Vukcevic,WSH,Out
 2026-10-12,NBA,4606840,Jamir Watkins,WSH,Out
+2026-10-13,NBA,6606,Damian Lillard,POR,Day-To-Day
+2026-10-13,NBA,4066211,Robert Williams III,POR,Day-To-Day
+2026-10-13,NBA,4590360,Chucky Hepburn,TOR,Day-To-Day
 2026-10-13,NBA,4869342,Dyson Daniels,ATL,Day-To-Day
 2026-10-13,NBA,4397020,Luguentz Dort,ATL,Day-To-Day
 2026-10-13,NBA,4585618,Keshon Gilbert,ATL,Day-To-Day
@@ -3980,8 +3983,10 @@ date,league,athlete_id,player,team,status
 2026-10-13,NBA,5061575,Kon Knueppel,CHA,Day-To-Day
 2026-10-13,NBA,4395651,Coby White,CHA,Day-To-Day
 2026-10-13,NBA,4066218,Grant Williams,CHA,Day-To-Day
+2026-10-13,NBA,5105555,Tobe Awaka,CHI,Day-To-Day
 2026-10-13,NBA,4278067,Nic Claxton,CHI,Day-To-Day
 2026-10-13,NBA,4066650,Zach Collins,CHI,Day-To-Day
+2026-10-13,NBA,4432822,Isaac Okoro,CHI,Day-To-Day
 2026-10-13,NBA,4898010,Jaylin Sellers,CHI,Day-To-Day
 2026-10-13,NBA,4997530,Khalifa Diop,CLE,Day-To-Day
 2026-10-13,NBA,5106268,Nae'Qwan Tomlin,CLE,Day-To-Day
@@ -4068,9 +4073,7 @@ date,league,athlete_id,player,team,status
 2026-10-13,NBA,3136193,Devin Booker,PHX,Day-To-Day
 2026-10-13,NBA,4066383,Miles Bridges,PHX,Day-To-Day
 2026-10-13,NBA,4701232,Mark Williams,PHX,Out
-2026-10-13,NBA,6606,Damian Lillard,POR,Day-To-Day
 2026-10-13,NBA,4914336,Shaedon Sharpe,POR,Out
-2026-10-13,NBA,4066211,Robert Williams III,POR,Day-To-Day
 2026-10-13,NBA,4706557,Chris Youngblood,POR,Day-To-Day
 2026-10-13,NBA,4433174,Dylan Cardwell,SAC,Day-To-Day
 2026-10-13,NBA,4066262,Malik Monk,SAC,Day-To-Day
@@ -4087,7 +4090,6 @@ date,league,athlete_id,player,team,status
 2026-10-13,NBA,4277880,Malik Williams,SA,Day-To-Day
 2026-10-13,NBA,4432586,Nate Bittle,TOR,Day-To-Day
 2026-10-13,NBA,5149115,Allen Graves,TOR,Day-To-Day
-2026-10-13,NBA,4590360,Chucky Hepburn,TOR,Day-To-Day
 2026-10-13,NBA,4431684,Trayce Jackson-Davis,TOR,Day-To-Day
 2026-10-13,NBA,4702656,Alijah Martin,TOR,Day-To-Day
 2026-10-13,NBA,4684793,Kyle Filipowski,UTAH,Day-To-Day
