@@ -393,7 +393,13 @@ def run(today_str):
 
     board = None
     if slate:
-        rows = df[df.game_id.isin([s["game_id"] for s in slate])].copy()
+        # Labels 0..n-1. The push loop further down sorts the board, then reads p, sp_line
+        # and the cover grid at each game's board label, which is only right while a label
+        # IS that game's position in those arrays. df is the whole history plus the slate,
+        # so without the reset the slate arrives labelled 11570 and up and the loop dies on
+        # its first real game (opening week, reported 2026-10-20). It had only ever run on an
+        # empty board before that.
+        rows = df[df.game_id.isin([s["game_id"] for s in slate])].copy().reset_index(drop=True)
         p = mdl.predict_proba(sc.transform(rows[E.NEW_FEATS].values))[:, 1]
         mg = rows[["h_gp","a_gp"]].min(axis=1).values
         alpha = A0 + (1 - A0)*np.minimum(mg, 10)/10.0
@@ -419,6 +425,23 @@ def run(today_str):
                               "sp_ver": spread.VERSION, "model": "v1"})
         for nm, k in zip(SP_COLS, SP_LINES):
             board[nm] = spread.cover(sp_ph, sp_Ph, sp_Pa, k)
+        # Invariant for the push loop: every board label must point at that game's own values
+        # in p and sp_line. A label that is not a position crashes; a label that is a position
+        # but the wrong one posts another game's spread with no error at all. So this compares
+        # the values themselves, and a FAIL turns the workflow red at chk.finish() before
+        # anything is logged or posted. Recorded through _emit because a new public check would mean
+        # re-syncing mbm_checks.py across all nine repos for one runner.
+        _n, _lab = len(board), board.index.to_numpy()
+        _aligned = (len(p) == _n and len(sp_line) == _n
+                    and pd.api.types.is_integer_dtype(board.index) and board.index.is_unique
+                    and bool(((_lab >= 0) & (_lab < _n)).all())
+                    and np.allclose(board.p_home.to_numpy(float), p[_lab])
+                    and np.allclose(board.sp_line.to_numpy(float), sp_line[_lab]))
+        chk._emit("PASS" if _aligned else "FAIL", "board_alignment",
+                  f"{_n} board rows each point at their own price and spread line" if _aligned
+                  else f"board rows out of step with the {len(sp_line)}-game price arrays (labels "
+                       f"{board.index[:3].tolist()}...), refusing to post spreads that could sit "
+                       f"on the wrong games")
         log = pd.concat([log[~log.game_id.isin(board.game_id)], board], ignore_index=True)
         gate_txt = "" if gate_open else f"  [CALIBRATION: no betting until every team has {CAL_MIN_GP} GP]"
         print("\n--- NBA detail: model margin, total, spread ladder ---")
@@ -433,6 +456,7 @@ def run(today_str):
                     print(ln)
     else:
         print("no games today or tomorrow")
+        chk.skip("board_alignment", "no games today or tomorrow")
 
     fin = g.set_index("game_id")["home_win"]
     log["result"] = log.game_id.map(fin)
