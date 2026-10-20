@@ -36,6 +36,10 @@ jobs:
       - run: python -c "import daily_nba"
       - run: python daily_nba.py
         env:
+          # Print every line the moment it happens. Without this Python holds normal output
+          # until exit while errors print at once, so a traceback lands in the middle of the
+          # log, above lines that actually ran before it. Quoted: env values are strings.
+          PYTHONUNBUFFERED: "1"
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           # The quotes matter. "@" starts a reserved indicator in YAML, so a bare
           # @everyone here is a parse error and GitHub hides the whole workflow.
