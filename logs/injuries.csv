@@ -5596,6 +5596,8 @@ date,league,athlete_id,player,team,status
 2026-10-29,NBA,5238230,Tre Johnson,WSH,Day-To-Day
 2026-10-29,NBA,4997537,Tristan Vukcevic,WSH,Out
 2026-10-29,NBA,4606840,Jamir Watkins,WSH,Out
+2026-10-30,NBA,4431687,Patrick Williams,CHI,Out
+2026-10-30,NBA,5113969,Cameron Carr,LAL,Out
 2026-10-30,NBA,4712863,Mouhamed Gueye,ATL,Out
 2026-10-30,NBA,5105571,Henri Veesaar,ATL,Out
 2026-10-30,NBA,4433188,Devin Carter,BOS,Out
@@ -5610,7 +5612,6 @@ date,league,athlete_id,player,team,status
 2026-10-30,NBA,5105555,Tobe Awaka,CHI,Day-To-Day
 2026-10-30,NBA,4278067,Nic Claxton,CHI,Out
 2026-10-30,NBA,4397189,Jalen Smith,CHI,Day-To-Day
-2026-10-30,NBA,4431687,Patrick Williams,CHI,Out
 2026-10-30,NBA,5041951,Meleek Thomas,CLE,Day-To-Day
 2026-10-30,NBA,4593125,Santi Aldama,DAL,Out
 2026-10-30,NBA,5148538,Tarik Biberovic,DAL,Out
@@ -5631,6 +5632,7 @@ date,league,athlete_id,player,team,status
 2026-10-30,NBA,4871144,Alperen Sengun,HOU,Day-To-Day
 2026-10-30,NBA,4711272,Reed Sheppard,HOU,Out
 2026-10-30,NBA,2990992,Marcus Smart,HOU,Out
+2026-10-30,NBA,5157066,Johnny Furphy,IND,Out
 2026-10-30,NBA,4396993,Tyrese Haliburton,IND,Out
 2026-10-30,NBA,2530530,T.J. McConnell,IND,Out
 2026-10-30,NBA,4395712,Andrew Nembhard,IND,Day-To-Day
@@ -5643,7 +5645,6 @@ date,league,athlete_id,player,team,status
 2026-10-30,NBA,4396818,Jordan Miller,LAC,Out
 2026-10-30,NBA,5108024,Yanic Konan Niederhauser,LAC,Out
 2026-10-30,NBA,4065778,Max Strus,LAC,Out
-2026-10-30,NBA,5113969,Cameron Carr,LAL,Out
 2026-10-30,NBA,5060631,Adou Thiero,LAL,Out
 2026-10-30,NBA,4433137,Ziaire Williams,LAL,Day-To-Day
 2026-10-30,NBA,4593016,Quinten Post,MEM,Day-To-Day
@@ -5672,7 +5673,7 @@ date,league,athlete_id,player,team,status
 2026-10-30,NBA,4432446,Jabari Walker,PHI,Out
 2026-10-30,NBA,4601023,Oso Ighodaro,PHX,Day-To-Day
 2026-10-30,NBA,4701232,Mark Williams,PHX,Out
-2026-10-30,NBA,4279888,Ja Morant,POR,Day-To-Day
+2026-10-30,NBA,4279888,Ja Morant,POR,Out
 2026-10-30,NBA,4914336,Shaedon Sharpe,POR,Out
 2026-10-30,NBA,4066211,Robert Williams III,POR,Day-To-Day
 2026-10-30,NBA,4706557,Chris Youngblood,POR,Out
