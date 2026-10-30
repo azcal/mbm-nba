@@ -5600,6 +5600,7 @@ date,league,athlete_id,player,team,status
 2026-10-30,NBA,5105571,Henri Veesaar,ATL,Out
 2026-10-30,NBA,4433188,Devin Carter,BOS,Out
 2026-10-30,NBA,5105626,Tyler Bilodeau,BKN,Out
+2026-10-30,NBA,4712896,Noah Clowney,BKN,Day-To-Day
 2026-10-30,NBA,5175643,Egor Demin,BKN,Out
 2026-10-30,NBA,4684269,Kylan Boswell,CHA,Out
 2026-10-30,NBA,5061575,Kon Knueppel,CHA,Out
@@ -5610,7 +5611,7 @@ date,league,athlete_id,player,team,status
 2026-10-30,NBA,4278067,Nic Claxton,CHI,Out
 2026-10-30,NBA,4397189,Jalen Smith,CHI,Day-To-Day
 2026-10-30,NBA,4431687,Patrick Williams,CHI,Out
-2026-10-30,NBA,5041951,Meleek Thomas,CLE,Out
+2026-10-30,NBA,5041951,Meleek Thomas,CLE,Day-To-Day
 2026-10-30,NBA,4593125,Santi Aldama,DAL,Out
 2026-10-30,NBA,5148538,Tarik Biberovic,DAL,Out
 2026-10-30,NBA,5279129,Sergio de Larrea,DAL,Out
@@ -5645,12 +5646,13 @@ date,league,athlete_id,player,team,status
 2026-10-30,NBA,5113969,Cameron Carr,LAL,Out
 2026-10-30,NBA,5060631,Adou Thiero,LAL,Out
 2026-10-30,NBA,4433137,Ziaire Williams,LAL,Day-To-Day
+2026-10-30,NBA,4593016,Quinten Post,MEM,Day-To-Day
 2026-10-30,NBA,3899664,Simone Fontecchio,MIA,Day-To-Day
 2026-10-30,NBA,3934673,Donte DiVincenzo,MIN,Out
 2026-10-30,NBA,4594268,Anthony Edwards,MIN,Out
 2026-10-30,NBA,5061589,Yves Missi,NO,Out
-2026-10-30,NBA,3907497,Dejounte Murray,NO,Out
-2026-10-30,NBA,4277956,Jordan Poole,NO,Out
+2026-10-30,NBA,3907497,Dejounte Murray,NO,Day-To-Day
+2026-10-30,NBA,4277956,Jordan Poole,NO,Day-To-Day
 2026-10-30,NBA,4277869,Jose Alvarado,NY,Out
 2026-10-30,NBA,2991350,Alex Caruso,OKC,Out
 2026-10-30,NBA,4433255,Chet Holmgren,OKC,Day-To-Day
@@ -5670,8 +5672,9 @@ date,league,athlete_id,player,team,status
 2026-10-30,NBA,4432446,Jabari Walker,PHI,Out
 2026-10-30,NBA,4601023,Oso Ighodaro,PHX,Day-To-Day
 2026-10-30,NBA,4701232,Mark Williams,PHX,Out
+2026-10-30,NBA,4279888,Ja Morant,POR,Day-To-Day
 2026-10-30,NBA,4914336,Shaedon Sharpe,POR,Out
-2026-10-30,NBA,4066211,Robert Williams III,POR,Out
+2026-10-30,NBA,4066211,Robert Williams III,POR,Day-To-Day
 2026-10-30,NBA,4706557,Chris Youngblood,POR,Out
 2026-10-30,NBA,4433174,Dylan Cardwell,SAC,Out
 2026-10-30,NBA,4594327,Keegan Murray,SAC,Out
