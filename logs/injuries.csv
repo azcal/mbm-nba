@@ -7895,6 +7895,8 @@ date,league,athlete_id,player,team,status
 2026-11-22,NBA,4432907,Justin Champagnie,WSH,Out
 2026-11-22,NBA,4997537,Tristan Vukcevic,WSH,Out
 2026-11-22,NBA,4606840,Jamir Watkins,WSH,Out
+2026-11-25,NBA,4278078,P.J. Washington,DAL,Day-To-Day
+2026-11-25,NBA,4432819,Tre Mann,WSH,Day-To-Day
 2026-11-25,NBA,4712863,Mouhamed Gueye,ATL,Out
 2026-11-25,NBA,3146557,Jock Landale,ATL,Out
 2026-11-25,NBA,2490149,CJ McCollum,ATL,Out
@@ -7916,7 +7918,6 @@ date,league,athlete_id,player,team,status
 2026-11-25,NBA,5279129,Sergio de Larrea,DAL,Out
 2026-11-25,NBA,5106040,Tobi Lawal,DAL,Out
 2026-11-25,NBA,4683688,Dereck Lively II,DAL,Out
-2026-11-25,NBA,4278078,P.J. Washington,DAL,Day-To-Day
 2026-11-25,NBA,4432166,Cade Cunningham,DET,Out
 2026-11-25,NBA,4433621,Jalen Duren,DET,Out
 2026-11-25,NBA,5258459,Ebuka Okorie,DET,Out
@@ -7987,6 +7988,5 @@ date,league,athlete_id,player,team,status
 2026-11-25,NBA,3102530,Jusuf Nurkic,UTAH,Out
 2026-11-25,NBA,4432187,Reece Beekman,WSH,Out
 2026-11-25,NBA,4432907,Justin Champagnie,WSH,Out
-2026-11-25,NBA,4432819,Tre Mann,WSH,Day-To-Day
 2026-11-25,NBA,4997537,Tristan Vukcevic,WSH,Out
 2026-11-25,NBA,4606840,Jamir Watkins,WSH,Out
